@@ -1,9 +1,9 @@
 local RS = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
-local StartTimerRemoteEvent = RS.RemoteEvents.Common.StartTimer
-local FinishTimerRemoteEvent = RS.RemoteEvents.Common.FinishTimer
-local ResetTimerRemoteEvent = RS.RemoteEvents.Common.ResetTimer
+local StartTimerRemoteEvent = RS.Common.RemoteEvents.StartTimer
+local FinishTimerRemoteEvent = RS.Common.RemoteEvents.FinishTimer
+local ResetTimerRemoteEvent = RS.Common.RemoteEvents.ResetTimer
 
 local TimerTextRef = script.TimerTextRef.Value
 

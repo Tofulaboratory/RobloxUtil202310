@@ -20,6 +20,18 @@
           "PlayerParamSaveBindableEvent":{
             "$className":"BindableEvent"
           }
+        },
+        "RemoteEvents": {
+          "$className":"Folder",
+          "StartTimerRemoteEvent":{
+            "$className":"RemoteEvent"
+          },
+          "FinishTimerRemoteEvent":{
+            "$className":"RemoteEvent"
+          },
+          "ResetTimerRemoteEvent":{
+            "$className":"RemoteEvent"
+          }
         }
       }
     },
