@@ -1,6 +1,6 @@
 local DataStoreService = game:GetService("DataStoreService")
 local RS = game:GetService("ReplicatedStorage")
-local DataTypes = require(RS.Types.Common.DataTypes)
+local DataTypes = require(RS.Common.Types.DataTypes)
 
 local _env = "dev"
 --local env = "test"
@@ -39,19 +39,19 @@ function GetDataCache(userId:number) : DataTypes.PlayerParam
 	return nil
 end
 
-local PlayerParamBindableRequest : BindableFunction = RS.BindableFunctions.Common.PlayerParamBindableRequest
+local PlayerParamBindableRequest : BindableFunction = RS.Common.BindableFunctions.PlayerParamBindableRequest
 PlayerParamBindableRequest.OnInvoke = function(player:Player)
 	return FetchPlayerParam(player.UserId)
 end
 
-local PlayerGameStartParamBindableRequest : BindableFunction = RS.BindableFunctions.Common.PlayerGameStartParamBindableRequest
+local PlayerGameStartParamBindableRequest : BindableFunction = RS.Common.BindableFunctions.PlayerGameStartParamBindableRequest
 PlayerGameStartParamBindableRequest.OnInvoke = function(player:Player)
 	local data : DataTypes.PlayerParam = FetchPlayerParam(player.UserId)
 	SavePlayerParam(player.UserId,data,false)
 	return data
 end
 
-local PlayerParamSaveBindableEvent : BindableEvent = RS.BindableFunctions.Common.PlayerParamSaveBindableEvent
+local PlayerParamSaveBindableEvent : BindableEvent = RS.Common.BindableEvents.PlayerParamSaveBindableEvent
 PlayerParamSaveBindableEvent.Event:Connect(function(player:Player, data : DataTypes.PlayerParam, isCache : boolean)
 	SavePlayerParam(player.UserId,data,isCache)	
 end)

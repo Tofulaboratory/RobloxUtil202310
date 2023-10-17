@@ -4,8 +4,23 @@
     "$className": "DataModel",
 
     "ReplicatedStorage": {
-      "Shared": {
-        "$path": "src/shared"
+      "Common": {
+        "$path": "src/shared",
+        "BindableFunctions": {
+          "$className":"Folder",
+          "PlayerParamBindableRequest":{
+            "$className":"BindableFunction"
+          },
+          "PlayerGameStartParamBindableRequest":{
+            "$className":"BindableFunction"
+          }
+        },
+        "BindableEvents": {
+          "$className":"Folder",
+          "PlayerParamSaveBindableEvent":{
+            "$className":"BindableEvent"
+          }
+        }
       }
     },
 
