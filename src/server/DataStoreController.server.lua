@@ -1,10 +1,14 @@
 local DataStoreService = game:GetService("DataStoreService")
 local RS = game:GetService("ReplicatedStorage")
-local DataTypes = require(RS.CreatorsFolder.ModuleScripts.Types.DataTypes)
+local DataTypes = require(RS.Types.Common.DataTypes)
 
---local DataStoreKey = "dummy_playerParam4"
---local DataStoreKey = "pre_release_player_param_001"
-local DataStoreKey = "release_v1_0_player_param"
+local _env = "dev"
+--local env = "test"
+--local env = "staging"
+--local env = "prod"
+local _version = "001"
+local _key = "player_param"
+local DataStoreKey = _env.._version.._key
 
 local playerDataCache = {}
 function UpdateDataCache(data:DataTypes.PlayerParam)
@@ -35,20 +39,20 @@ function GetDataCache(userId:number) : DataTypes.PlayerParam
 	return nil
 end
 
-local PlayerParamRequest : BindableFunction = RS.CreatorsFolder.Events.Data.PlayerParamRequest
-PlayerParamRequest.OnInvoke = function(player:Player)
+local PlayerParamBindableRequest : BindableFunction = RS.BindableFunctions.Common.PlayerParamBindableRequest
+PlayerParamBindableRequest.OnInvoke = function(player:Player)
 	return FetchPlayerParam(player.UserId)
 end
 
-local PlayerGameStartParamRequest : BindableFunction = RS.CreatorsFolder.Events.Data.PlayerGameStartParamRequest
-PlayerGameStartParamRequest.OnInvoke = function(player:Player)
+local PlayerGameStartParamBindableRequest : BindableFunction = RS.BindableFunctions.Common.PlayerGameStartParamBindableRequest
+PlayerGameStartParamBindableRequest.OnInvoke = function(player:Player)
 	local data : DataTypes.PlayerParam = FetchPlayerParam(player.UserId)
 	SavePlayerParam(player.UserId,data,false)
 	return data
 end
 
-local PlayerParamSaveEvent : BindableEvent = RS.CreatorsFolder.Events.Data.PlayerParamSaveEvent
-PlayerParamSaveEvent.Event:Connect(function(player:Player, data : DataTypes.PlayerParam, isCache : boolean)
+local PlayerParamSaveBindableEvent : BindableEvent = RS.BindableFunctions.Common.PlayerParamSaveBindableEvent
+PlayerParamSaveBindableEvent.Event:Connect(function(player:Player, data : DataTypes.PlayerParam, isCache : boolean)
 	SavePlayerParam(player.UserId,data,isCache)	
 end)
 
