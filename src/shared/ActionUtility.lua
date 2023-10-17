@@ -30,16 +30,6 @@ function module:ChangePlayerJumpPower(player:Player,rate : number,duration : num
 	PlayerJumpPowerEvent:FireClient(player,rate,duration)
 end
 
---対象物への吹き飛ばし処理
-function module:Impact(impacter:BasePart,target:BasePart,power)
-	--if target == nil then return end
-	--warn("impulse",impacter,target)
-
-	--local bv=(target.Position-impacter.Position).Unit
-	--target:ApplyImpulse(Vector3.new(bv.X,math.abs(bv.Y),bv.Z)*power)
-	--target:ApplyAngularImpulse(Vector3.new(math.random(0,359),math.random(0,359),math.random(0,359)))
-end
-
 --攻撃の当たり判定の生成
 function module:CreateCommonAttackCD(
 	optional:{
@@ -93,7 +83,6 @@ function module:CreateCommonAttackCD(
 				end
 				table.insert(debounceList,name)
 
-				module:Impact(cd,part,300)
 				optional.onTouch(part,cd,optional.invoker)
 				--_time += 100000
 			end
