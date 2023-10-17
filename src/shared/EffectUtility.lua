@@ -1,7 +1,9 @@
 local module = {}
 
 local TweenService = game:GetService("TweenService")
-local EffectDataList = require(game:GetService("ReplicatedStorage").CreatorsFolder.ModuleScripts.Data.EffectDataList)
+local RS = game:GetService("ReplicatedStorage")
+
+local EffectDataList = require(RS.CreatorsFolder.ModuleScripts.Data.EffectDataList)
 
 function module:CreateEffect(
 	key : string,

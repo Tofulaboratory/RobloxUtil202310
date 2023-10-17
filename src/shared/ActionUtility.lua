@@ -1,6 +1,7 @@
 local module = {}
 
 local RunService = game:GetService("RunService")
+local RS = game:GetService("ReplicatedStorage")
 
 --partがプレイヤーのパーツかどうか
 function module:GetPlayerFromTouchedPart(part:BasePart) : Player
@@ -13,19 +14,19 @@ function module:GetPlayerFromTouchedPart(part:BasePart) : Player
 end
 
 --プレイヤーのダッシュ処理
-local DashPlayerEvent = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Player.DashPlayerEvent
+local DashPlayerEvent = RS.CreatorsFolder.Events.Player.DashPlayerEvent
 function module:DashPlayer(player:Player,dashPower:number)
 	DashPlayerEvent:FireClient(player,dashPower)
 end
 
 --プレイヤーの速度変更処理
-local PlayerAccelerationEvent = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Player.PlayerAccelerationEvent
+local PlayerAccelerationEvent = RS.CreatorsFolder.Events.Player.PlayerAccelerationEvent
 function module:ChangePlayerSpeed(player:Player,rate : number,duration : number)
 	PlayerAccelerationEvent:FireClient(player,rate,duration)
 end
 
 --プレイヤーのジャンプ力変更処理
-local PlayerJumpPowerEvent = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Player.PlayerJumpPowerEvent
+local PlayerJumpPowerEvent = RS.CreatorsFolder.Events.Player.PlayerJumpPowerEvent
 function module:ChangePlayerJumpPower(player:Player,rate : number,duration : number)
 	PlayerJumpPowerEvent:FireClient(player,rate,duration)
 end
@@ -45,8 +46,6 @@ function module:CreateCommonAttackCD(
 	}
 )
 	local thread = coroutine.create(function()
-		--warn("AttackCD")
-		--warn(optional)
 		local cd : Part = Instance.new("Part")
 		cd.Name = "AttackCD"
 		cd.Parent = workspace
@@ -74,9 +73,7 @@ function module:CreateCommonAttackCD(
 		cd.Touched:Connect(function(part:BasePart)
 			if part and part.Parent and part.Parent:FindFirstChild("Humanoid") then
 				local name = part.Parent.Name
-				--warn("touch:",name)
 				for i = 1, #debounceList do
-					--warn("exc:",debounceList[i])
 					if debounceList[i] == name then
 						return
 					end
@@ -84,7 +81,6 @@ function module:CreateCommonAttackCD(
 				table.insert(debounceList,name)
 
 				optional.onTouch(part,cd,optional.invoker)
-				--_time += 100000
 			end
 		end)
 

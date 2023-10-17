@@ -1,20 +1,22 @@
 local module = {}
 
-local PlayerDataFetchRequest = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Data.PlayerDataFetchRequest
-local DataTypes = require(game:GetService("ReplicatedStorage").CreatorsFolder.ModuleScripts.Types.DataTypes)
 
-local SkillEvents = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Skill
-local SkillScripts = game:GetService("ReplicatedStorage").CreatorsFolder.ModuleScripts.SkillScripts
+local RS = game:GetService("ReplicatedStorage")
+local PlayerDataFetchRequest = RS.CreatorsFolder.Events.Data.PlayerDataFetchRequest
+local DataTypes = require(RS.CreatorsFolder.ModuleScripts.Types.DataTypes)
 
-local BeyStatusDataList = require(game:GetService("ReplicatedStorage").CreatorsFolder.ModuleScripts.Data.BeyStatusDataList)
-local SkillDataList = require(game:GetService("ReplicatedStorage").CreatorsFolder.ModuleScripts.Data.SkillDataList)
+local SkillEvents = RS.CreatorsFolder.Events.Skill
+local SkillScripts = RS.CreatorsFolder.ModuleScripts.SkillScripts
 
-local SkillBoardNormalSkillCoolTimeEvent = game:GetService("ReplicatedStorage").CreatorsFolder.Events.View.Gui.SkillBoardNormalSkillCoolTimeEvent
-local SkillBoardEquipSkillCoolTimeEvent = game:GetService("ReplicatedStorage").CreatorsFolder.Events.View.Gui.SkillBoardEquipSkillCoolTimeEvent
-local PlayerCurentBeyRequest = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Data.PlayerCurentBeyRequest
+local BeyStatusDataList = require(RS.CreatorsFolder.ModuleScripts.Data.BeyStatusDataList)
+local SkillDataList = require(RS.CreatorsFolder.ModuleScripts.Data.SkillDataList)
 
-local StartSkillIntervalEvent = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Player.StartSkillIntervalEvent
-local GetIsSkillIntervalRequest = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Player.GetIsSkillIntervalRequest
+local SkillBoardNormalSkillCoolTimeEvent = RS.CreatorsFolder.Events.View.Gui.SkillBoardNormalSkillCoolTimeEvent
+local SkillBoardEquipSkillCoolTimeEvent = RS.CreatorsFolder.Events.View.Gui.SkillBoardEquipSkillCoolTimeEvent
+local PlayerCurentBeyRequest = RS.CreatorsFolder.Events.Data.PlayerCurentBeyRequest
+
+local StartSkillIntervalEvent = RS.CreatorsFolder.Events.Player.StartSkillIntervalEvent
+local GetIsSkillIntervalRequest = RS.CreatorsFolder.Events.Player.GetIsSkillIntervalRequest
 
 function module:TriggerSkill(key:string)
 	if GetIsSkillIntervalRequest:Invoke("Normal") then return end

@@ -1,10 +1,11 @@
 local module = {}
 
-local DataTypes = require(game:GetService("ReplicatedStorage").CreatorsFolder.ModuleScripts.Types.DataTypes)
+local RS = game:GetService("ReplicatedStorage")
+local DataTypes = require(RS.CreatorsFolder.ModuleScripts.Types.DataTypes)
 
-local PlayerParamRequest : BindableFunction = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Data.PlayerParamRequest
-local PlayerGameStartParamRequest : BindableFunction = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Data.PlayerGameStartParamRequest
-local PlayerParamSaveEvent : BindableEvent = game:GetService("ReplicatedStorage").CreatorsFolder.Events.Data.PlayerParamSaveEvent
+local PlayerParamRequest : BindableFunction = RS.CreatorsFolder.Events.Data.PlayerParamRequest
+local PlayerGameStartParamRequest : BindableFunction = RS.CreatorsFolder.Events.Data.PlayerGameStartParamRequest
+local PlayerParamSaveEvent : BindableEvent = RS.CreatorsFolder.Events.Data.PlayerParamSaveEvent
 
 function module:RequestPlayerParam(player:Player) : DataTypes.PlayerParam
 	return PlayerParamRequest:Invoke(player)
