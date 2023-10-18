@@ -1,9 +1,9 @@
 local RS = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
-local StartTimerRemoteEvent = RS.Common.RemoteEvents.StartTimer
-local FinishTimerRemoteEvent = RS.Common.RemoteEvents.FinishTimer
-local ResetTimerRemoteEvent = RS.Common.RemoteEvents.ResetTimer
+local StartTimerRemoteEvent = RS.Common.RemoteEvents.StartTimerRemoteEvent
+local FinishTimerRemoteEvent = RS.Common.RemoteEvents.FinishTimerRemoteEvent
+local ResetTimerRemoteEvent = RS.Common.RemoteEvents.ResetTimerRemoteEvent
 
 local TimerTextRef = script.TimerTextRef.Value
 
@@ -37,7 +37,7 @@ function StartTimer()
 		if not _isRunTimer then return end
 
 		_time += step
-		TImerTextRef.Text = formatTime(_time)
+		TimerTextRef.Text = formatTime(_time)
 	end)
 end
 
@@ -50,6 +50,6 @@ function ResetTimer()
 	--warn("reset timer")
 	_isRunTimer = false
 	_time = 0
-	TImerTextRef.Text = formatTime(_time)
+	TimerTextRef.Text = formatTime(_time)
 end
 
